@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "noEmit": false,
+    "types": ["node"],
+    // Сборка CLI должна брать уже собранное ядро, а не его исходники.
+    "customConditions": []
+  },
+  "include": ["src"]
+}
