@@ -1,0 +1,20 @@
+# Микросервисы, которые опрашивают внешние API. Все когда-то поставили «каждые 5 минут».
+# Порог для этой машины — 4 процесса одновременно.
+
+# krona: name=poll-payments duration=3m
+*/5 * * * *  /srv/poll/payments
+
+# krona: name=poll-delivery duration=4m
+*/5 * * * *  /srv/poll/delivery
+
+# krona: name=poll-stock duration=2m
+*/5 * * * *  /srv/poll/stock
+
+# krona: name=poll-fx duration=1m
+*/5 * * * *  /srv/poll/fx-rates
+
+# krona: name=export-feed duration=12m
+*/10 * * * * /srv/feed/export
+
+# krona: name=reindex duration=30m
+0 * * * *    /srv/search/reindex

@@ -1,0 +1,74 @@
+# Один и тот же отчёт в трёх регионах. Каждый CronJob считает 09:00 по своему поясу,
+# а читает общее хранилище, которое выдерживает только одну тяжёлую выгрузку за раз
+# (порог 1). Поэтому важно, когда 09:00 наступает по UTC.
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: report-moscow
+  annotations:
+    krona/duration: 45m
+spec:
+  schedule: "0 9 * * 1-5"
+  timeZone: Europe/Moscow
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: report
+              image: registry.local/analytics/report:3.2.0
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: report-berlin
+  annotations:
+    krona/duration: 45m
+spec:
+  schedule: "0 9 * * 1-5"
+  timeZone: Europe/Berlin
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: report
+              image: registry.local/analytics/report:3.2.0
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: warehouse-load
+  annotations:
+    krona/duration: 2h
+spec:
+  schedule: "30 6 * * *"
+  timeZone: UTC
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: load
+              image: registry.local/analytics/warehouse-load:1.9.4
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: report-dubai
+  annotations:
+    krona/duration: 45m
+spec:
+  schedule: "0 9 * * 1-5"
+  timeZone: Asia/Dubai
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: report
+              image: registry.local/analytics/report:3.2.0

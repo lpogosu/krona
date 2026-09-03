@@ -1,0 +1,12 @@
+# Сервер в Берлине. В ночь на 29 марта часы переводятся с 02:00 на 03:00,
+# в ночь на 25 октября — с 03:00 обратно на 02:00.
+CRON_TZ=Europe/Berlin
+
+# krona: name=invoices duration=15m
+30 2 * * *   /srv/billing/send-invoices
+
+# krona: name=metrics-rollup duration=5m
+0 * * * *    /srv/metrics/rollup
+
+# krona: name=cache-warm duration=10m
+15 3 * * *   /srv/cache/warm

@@ -1,0 +1,21 @@
+# prod-db-01 — ночное обслуживание базы. Сервер живёт в UTC.
+# Длительности сняты по журналу за последний месяц (p95).
+MAILTO=dba@example.org
+
+# krona: duration=5m
+0 0 * * *    /usr/local/bin/rotate-logs
+
+# krona: duration=50m
+0 2 * * *    /opt/backup/run.sh --target s3://backups/prod-db-01
+
+# krona: name=cleanup-tmp duration=40m
+0 3 * * *    /srv/cleanup-tmp --older-than 7d
+
+# krona: name=reports duration=20m
+0 6 * * 1-5  /srv/reports/daily.sh
+
+# krona: name=sync-orders duration=10m
+*/15 * * * * /srv/sync-orders
+
+# krona: name=billing duration=25m
+30 3 * * *   /srv/billing/close-day
