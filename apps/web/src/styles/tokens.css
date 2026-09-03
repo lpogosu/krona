@@ -1,0 +1,97 @@
+/*
+ * Токены повторяют коллекцию переменных krona/color из макета: режимы «Светлая» и «Тёмная».
+ * Имена совпадают с именами переменных Figma, чтобы правка цвета находилась поиском в обе стороны.
+ */
+:root,
+[data-theme='light'] {
+  color-scheme: light;
+  --text: #1e2b22;
+  --text-muted: #5b6a60;
+  --panel: rgb(255 255 255 / 0.74);
+  --surface: rgb(255 255 255 / 0.92);
+  --panel-border: rgb(255 255 255 / 0.85);
+  --line: rgb(30 43 34 / 0.09);
+  --accent: #28702f;
+  --accent-soft: #e3f1e1;
+  --on-accent: #ffffff;
+  --conflict: #b93a27;
+  --conflict-soft: #fde9e5;
+  --warn: #8a5708;
+  --warn-soft: #fbefd9;
+  --focus: rgb(40 112 47 / 0.45);
+  --shadow: 0 12px 32px rgb(26 51 38 / 0.1);
+
+  --job-1: #2f7d3a;
+  --job-2: #e8732c;
+  --job-3: #3569d6;
+  --job-4: #8457d1;
+  --job-5: #14968c;
+  --job-6: #c99a0e;
+  --job-7: #c2477a;
+  --job-8: #5b7f1a;
+
+  --scene: url('/art/bg-day.webp');
+  --tree-filter: none;
+  --sticky: #ffed9e;
+  --sticky-text: #4d3d0d;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --text: #eaf2ec;
+  --text-muted: #9fb2a6;
+  --panel: rgb(15 42 38 / 0.64);
+  --surface: rgb(11 31 28 / 0.72);
+  --panel-border: rgb(255 255 255 / 0.1);
+  --line: rgb(255 255 255 / 0.08);
+  --accent: #6ccb77;
+  --accent-soft: #1e3f2b;
+  --on-accent: #0b1f1c;
+  --conflict: #ff7a66;
+  --conflict-soft: #4a2320;
+  --warn: #f2b24c;
+  --warn-soft: #3d2f14;
+  --focus: rgb(108 203 119 / 0.55);
+  --shadow: 0 12px 32px rgb(0 0 0 / 0.3);
+
+  --job-1: #6ccb77;
+  --job-2: #ff9a57;
+  --job-3: #7ea2f2;
+  --job-4: #b18cf0;
+  --job-5: #4fd1c5;
+  --job-6: #f2c94c;
+  --job-7: #f08ab5;
+  --job-8: #b5d86a;
+
+  --scene: url('/art/bg-night.webp');
+  --tree-filter: brightness(0.72) saturate(0.85) hue-rotate(-6deg);
+}
+
+:root {
+  /* Шкала из пяти размеров: подписи, текст, заголовок панели, заголовок экрана, крупная цифра. */
+  --fs-caption: 0.8125rem;
+  --fs-body: 0.9375rem;
+  --fs-title: 1.125rem;
+  --fs-heading: 1.75rem;
+  --fs-display: 3.25rem;
+
+  --font-ui: 'Onest Variable', 'Segoe UI', system-ui, sans-serif;
+  --font-brand: 'Unbounded', 'Onest Variable', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', monospace;
+  --font-hand: 'Caveat', 'Segoe Print', cursive;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+
+  --radius-s: 10px;
+  --radius-m: 14px;
+  --radius-l: 24px;
+
+  --blur: blur(28px);
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --fast: 160ms;
+}
