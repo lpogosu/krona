@@ -1,0 +1,144 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  height: 88px;
+  padding: 0 var(--space-6);
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--text);
+  text-decoration: none;
+  font-family: var(--font-brand);
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.tabs {
+  display: flex;
+  gap: var(--space-1);
+  padding: 6px;
+  border-radius: 999px;
+  background: var(--line);
+}
+
+.tab {
+  position: relative;
+  min-height: 44px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: var(--fs-title);
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background-color var(--fast) var(--ease),
+    color var(--fast) var(--ease);
+}
+
+.tab:hover:not(:disabled) {
+  color: var(--text);
+}
+
+.tab[aria-current='page'] {
+  background: var(--surface);
+  color: var(--accent);
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.08);
+}
+
+.tab:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.tab-badge {
+  position: absolute;
+  top: 9px;
+  right: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--conflict);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-left: auto;
+}
+
+.zone-select {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  background: var(--surface);
+  color: var(--text-muted);
+}
+
+.zone-select:focus-within {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.zone-select select {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+}
+
+@media (max-width: 1280px) {
+  .header {
+    gap: var(--space-3);
+    padding: 0 var(--space-4);
+  }
+  .tab {
+    padding: 0 14px;
+    font-size: var(--fs-body);
+  }
+  .share span {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .header {
+    height: 64px;
+  }
+  .brand {
+    font-size: 1.35rem;
+  }
+  .brand img {
+    width: 36px;
+    height: 36px;
+  }
+  /* На телефоне вкладки уходят в нижнюю панель навигации. */
+  .tabs,
+  .zone-select,
+  .share {
+    display: none;
+  }
+}

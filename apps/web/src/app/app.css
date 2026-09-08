@@ -1,0 +1,73 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  padding: var(--space-5) var(--space-5) var(--space-6);
+}
+
+.skip {
+  position: absolute;
+  left: var(--space-4);
+  top: -60px;
+  z-index: 50;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-s);
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.skip:focus {
+  top: var(--space-4);
+}
+
+.bottom-nav {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .main {
+    padding: var(--space-4) var(--space-4) 112px;
+  }
+
+  .bottom-nav {
+    position: fixed;
+    inset: auto 0 0;
+    z-index: 20;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    padding: var(--space-2) var(--space-2) calc(var(--space-3) + env(safe-area-inset-bottom));
+    background: var(--panel);
+    border-top: 1px solid var(--line);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+  }
+
+  .bottom-nav button {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    min-height: 56px;
+    border: 0;
+    border-radius: var(--radius-m);
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    cursor: pointer;
+  }
+
+  .bottom-nav button[aria-current='page'] {
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .bottom-nav button:disabled {
+    opacity: 0.45;
+  }
+}
