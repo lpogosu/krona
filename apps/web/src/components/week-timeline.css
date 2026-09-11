@@ -1,0 +1,103 @@
+.week {
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr);
+  gap: var(--space-3);
+}
+
+.week-names {
+  display: grid;
+  grid-auto-rows: var(--row);
+  padding-top: 32px;
+  font-size: var(--fs-caption);
+}
+
+.week-names span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: var(--row);
+}
+
+.week-names .is-selected {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.week-canvas {
+  position: relative;
+  min-width: 0;
+}
+
+.week-days {
+  position: relative;
+  height: 32px;
+}
+
+.week-day {
+  position: absolute;
+  top: 0;
+  padding: 3px 8px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+button.week-day {
+  cursor: pointer;
+}
+
+button.week-day:hover {
+  background: var(--line);
+}
+
+.week-day.is-weekend {
+  color: var(--conflict);
+}
+
+.week-day.is-selected {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.week svg {
+  display: block;
+  width: 100%;
+}
+
+.week-sep {
+  stroke: var(--line);
+  stroke-width: 1;
+}
+
+.week-selected {
+  fill: var(--accent-soft);
+  opacity: 0.6;
+}
+
+.week-overload {
+  fill: var(--conflict);
+  opacity: 0.28;
+}
+
+.week-now {
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+
+@media (max-width: 900px) {
+  /* Семь суток не помещаются в 360 px — полотно прокручивается, а имена задач стоят на месте. */
+  .week {
+    grid-template-columns: 96px minmax(0, 1fr);
+  }
+  .week-canvas {
+    overflow-x: auto;
+  }
+  .week-days,
+  .week-canvas svg {
+    min-width: 720px;
+  }
+}
