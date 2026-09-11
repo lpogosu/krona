@@ -1,0 +1,134 @@
+.week-screen {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  grid-template-areas:
+    'head head'
+    'timeline timeline'
+    'heat recurring';
+  gap: var(--space-5);
+  max-width: 1880px;
+  margin: 0 auto;
+}
+
+.week-screen .page-head {
+  grid-area: head;
+}
+
+.week-panel {
+  grid-area: timeline;
+  padding: var(--space-5);
+}
+
+.heat-panel,
+.recurring-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  min-width: 0;
+}
+
+.heat-panel {
+  grid-area: heat;
+}
+
+.recurring-panel {
+  grid-area: recurring;
+}
+
+.heat-panel h2,
+.recurring-panel h2 {
+  font-size: var(--fs-title);
+}
+
+.heat {
+  display: grid;
+  gap: 3px;
+  overflow-x: auto;
+}
+
+.heat-row {
+  display: grid;
+  grid-template-columns: 56px repeat(24, minmax(22px, 1fr));
+  gap: 3px;
+}
+
+.heat-row [role='rowheader'] {
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  align-self: center;
+}
+
+.heat-hours span {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.heat-cell {
+  display: grid;
+  place-items: center;
+  height: 30px;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--accent) calc(var(--level) * 70%), var(--line));
+  color: var(--text);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.heat-cell.is-over {
+  background: var(--conflict);
+  color: #fff;
+}
+
+.recurring-panel ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.recurring-panel li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+  padding: var(--space-3) var(--space-4);
+}
+
+.recurring-empty {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+@media (max-width: 1100px) {
+  .week-screen {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: 'head' 'timeline' 'heat' 'recurring';
+  }
+}
+
+.recurring-note {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: auto;
+  padding: var(--space-3) var(--space-4);
+  border-radius: 18px;
+  background: var(--conflict-soft);
+}
+
+.recurring-note p {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 200px;
+}
+
+.recurring-note .hand {
+  color: var(--conflict);
+  font-size: 1.6rem;
+}
