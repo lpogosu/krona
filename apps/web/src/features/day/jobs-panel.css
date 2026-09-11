@@ -1,0 +1,183 @@
+.jobs-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  min-width: 0;
+}
+
+.cron-editor {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.cron-input {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 6px 6px 6px var(--space-4);
+  border: 2px solid var(--accent);
+  border-radius: var(--radius-m);
+  background: var(--surface);
+}
+
+.cron-input:focus-within {
+  outline: 3px solid var(--focus);
+}
+
+.cron-input.is-invalid {
+  border-color: var(--conflict);
+}
+
+.cron-input input {
+  flex: 1;
+  min-width: 10ch;
+  border: 0;
+  background: transparent;
+  font-size: 1.5rem;
+  outline: none;
+}
+
+.cron-input .chip {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 55%;
+  padding: 6px 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: var(--fs-body);
+  font-weight: 500;
+  border-radius: var(--radius-s);
+}
+
+@media (max-width: 520px) {
+  .cron-input {
+    flex-wrap: wrap;
+    padding-bottom: var(--space-2);
+  }
+  .cron-input .chip {
+    max-width: 100%;
+  }
+}
+
+.cron-apply {
+  min-height: 40px;
+  padding: 6px 14px;
+}
+
+.cron-fields {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+  padding: 4px;
+  border-radius: var(--radius-s);
+  background: var(--line);
+}
+
+.cron-field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4px 2px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  overflow: hidden;
+}
+
+.cron-field .mono {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text);
+  font-size: var(--fs-body);
+}
+
+.cron-field.is-invalid {
+  background: var(--conflict-soft);
+  color: var(--conflict);
+}
+
+.cron-field.is-invalid .mono {
+  color: var(--conflict);
+}
+
+.jobs-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.jobs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-y: auto;
+}
+
+.job-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  min-height: 44px;
+  padding: var(--space-2) var(--space-3);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-s);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.job-row:hover {
+  background: var(--line);
+}
+
+.job-row.is-selected {
+  border-color: var(--accent);
+  background: var(--surface);
+}
+
+.job-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.job-expr {
+  font-size: var(--fs-caption);
+  white-space: nowrap;
+}
+
+.jobs-hint {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: auto;
+  padding: var(--space-2) var(--space-4) var(--space-2) var(--space-2);
+  border-radius: 18px;
+  background: var(--accent-soft);
+}
+
+.jobs-hint img {
+  flex: none;
+  height: auto;
+}
+
+.jobs-hint p {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: var(--fs-caption);
+}
+
+.jobs-hint .hand {
+  font-size: 1.45rem;
+}
