@@ -1,0 +1,110 @@
+.crown {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.crown-tree {
+  filter: var(--tree-filter);
+}
+
+.crown-ring {
+  fill: none;
+  stroke: rgb(255 255 255 / 0.9);
+  stroke-width: 2.5;
+  stroke-dasharray: 2 9;
+}
+
+[data-theme='dark'] .crown-ring,
+[data-theme='dark'] .crown-tick {
+  opacity: 0.55;
+}
+
+.crown-tick {
+  stroke: #fff;
+  stroke-linecap: round;
+}
+
+.crown-hour rect {
+  fill: var(--surface);
+  filter: drop-shadow(0 2px 6px rgb(0 0 0 / 0.1));
+}
+
+.crown-hour text {
+  fill: var(--text-muted);
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.crown-hour.is-major text {
+  fill: var(--text);
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.crown-hour.is-hot rect {
+  fill: var(--conflict);
+}
+
+.crown-hour.is-hot text {
+  fill: #fff;
+  font-weight: 700;
+}
+
+.crown-overload {
+  fill: none;
+  stroke: var(--conflict);
+  stroke-width: 16;
+  stroke-linecap: round;
+}
+
+.crown-run,
+.crown-belt {
+  cursor: pointer;
+  transition: opacity var(--fast) var(--ease);
+}
+
+.crown-run:focus-visible,
+.crown-belt:focus-visible {
+  outline: none;
+}
+
+.crown-run:focus-visible .crown-core,
+.crown-run.is-selected .crown-core {
+  stroke: var(--text);
+  stroke-width: 5;
+}
+
+.crown-core {
+  stroke: #fff;
+  stroke-width: 4;
+}
+
+.crown-run:hover .crown-core {
+  stroke-width: 6;
+}
+
+.is-dim {
+  opacity: 0.3;
+}
+
+.crown-belt:focus-visible circle {
+  stroke: var(--text);
+  stroke-width: 1.5;
+}
+
+/* На телефоне круг ужимается втрое: второстепенные часы превращаются в нечитаемую рябь. */
+@media (max-width: 600px) {
+  .crown-hour:not(.is-major, .is-hot) {
+    display: none;
+  }
+  .crown-hour.is-major text,
+  .crown-hour.is-hot text {
+    font-size: 30px;
+  }
+  .crown-hour.is-major rect,
+  .crown-hour.is-hot rect {
+    transform: scale(1.5);
+  }
+}
