@@ -1,0 +1,333 @@
+.conflicts {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 500px);
+  grid-template-areas:
+    'head outcome'
+    'stats outcome'
+    'chart outcome'
+    'pairs outcome';
+  gap: var(--space-5);
+  max-width: 1880px;
+  margin: 0 auto;
+}
+
+.conflicts-head {
+  grid-area: head;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-5);
+}
+
+.conflicts-head h1 {
+  font-size: 2.6rem;
+  line-height: 1.1;
+}
+
+.head-icon {
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  border: 3px solid var(--accent);
+  border-radius: 50%;
+  color: var(--accent);
+}
+
+.head-icon.is-conflict {
+  border-color: var(--conflict);
+  color: var(--conflict);
+}
+
+.head-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stat-cards {
+  grid-area: stats;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-5);
+  min-width: 0;
+}
+
+.stat-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 600;
+  font-size: var(--fs-title);
+}
+
+.stat-card strong {
+  font-size: var(--fs-display);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.stat-card .mono {
+  font-size: var(--fs-caption);
+  overflow-wrap: anywhere;
+}
+
+.is-accent {
+  color: var(--accent);
+}
+
+.is-warn {
+  color: var(--warn);
+}
+
+.chart-panel {
+  grid-area: chart;
+  padding: var(--space-5);
+}
+
+.chart-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.chart-head h2 {
+  font-size: var(--fs-title);
+}
+
+.chart-head strong {
+  font-size: var(--fs-title);
+}
+
+.load-chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: var(--space-3);
+}
+
+.chart-axis {
+  stroke: var(--line);
+  stroke-width: 1.5;
+}
+
+.chart-threshold {
+  stroke: var(--text-muted);
+  stroke-dasharray: 5 5;
+  opacity: 0.7;
+}
+
+.bar-before {
+  fill: var(--job-4);
+  opacity: 0.55;
+}
+
+.bar-after {
+  fill: var(--accent);
+  opacity: 0.8;
+}
+
+.bar-before.is-low,
+.bar-after.is-low {
+  opacity: 0.4;
+}
+
+.bar-over {
+  fill: var(--conflict);
+}
+
+.chart-label {
+  fill: var(--text);
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.chart-label.is-after {
+  fill: var(--accent);
+}
+
+.chart-hour,
+.chart-note {
+  fill: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 16px;
+}
+
+.pairs-panel {
+  grid-area: pairs;
+  padding: var(--space-5);
+}
+
+.pairs-panel ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pair-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+}
+
+.pair-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 700;
+}
+
+.pair-when {
+  margin-left: auto;
+  font-size: var(--fs-caption);
+}
+
+.outcome {
+  grid-area: outcome;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6) var(--space-6);
+  align-self: start;
+}
+
+.outcome-hero {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.outcome-hero img {
+  flex: none;
+  width: 180px;
+  height: auto;
+}
+
+.outcome-hero .hand {
+  font-size: 2rem;
+  transform: rotate(-4deg);
+}
+
+.outcome h2 {
+  font-size: var(--fs-heading);
+}
+
+.outcome-stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.outcome-stats div {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+}
+
+.outcome-stats dt {
+  color: var(--text-muted);
+}
+
+.outcome-stats dd {
+  margin: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.diff {
+  margin: 0;
+  padding: var(--space-2) 0;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  background: var(--surface);
+  font-size: var(--fs-caption);
+  line-height: 1.9;
+}
+
+.diff span {
+  display: block;
+  padding: 0 var(--space-4);
+  white-space: pre;
+}
+
+.diff-removed {
+  background: var(--conflict-soft);
+  color: var(--conflict);
+}
+
+.diff-added {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.diff-context {
+  color: var(--text-muted);
+}
+
+.tz-warning {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: 1.5px solid var(--warn);
+  border-radius: var(--radius-m);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.tz-warning svg {
+  flex: none;
+  color: var(--warn);
+}
+
+.outcome-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.outcome-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  text-align: center;
+}
+
+@media (max-width: 1400px) {
+  .conflicts {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: 'head' 'stats' 'chart' 'outcome' 'pairs';
+  }
+}
+
+@media (max-width: 900px) {
+  .conflicts-head h1 {
+    font-size: var(--fs-heading);
+  }
+  .stat-cards,
+  .pairs-panel ul {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .outcome {
+    padding: var(--space-5);
+  }
+}
