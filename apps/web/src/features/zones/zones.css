@@ -1,0 +1,142 @@
+.zones {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.zone-overview {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 520px);
+  gap: var(--space-5);
+  padding: var(--space-5);
+}
+
+.zone-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  align-content: start;
+  gap: var(--space-4);
+}
+
+.zone-figure {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.zone-figure img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-m);
+}
+
+.zone-figure figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: var(--fs-caption);
+}
+
+.zone-figure .hand {
+  font-size: 1.6rem;
+}
+
+@media (max-width: 900px) {
+  .zone-overview {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.zone-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-1);
+  padding: var(--space-4);
+}
+
+.zone-card strong {
+  font-size: var(--fs-heading);
+}
+
+.zone-card .btn {
+  margin-top: var(--space-2);
+}
+
+.zone-table-panel,
+.dst-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5);
+}
+
+.zone-table-panel h2,
+.dst-panel h2 {
+  font-size: var(--fs-title);
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+.zone-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.zone-table th,
+.zone-table td {
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.zone-table thead th {
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.zone-job {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.zone-desc {
+  display: block;
+  font-size: var(--fs-caption);
+}
+
+.dst-panel ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dst-panel li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+  padding: var(--space-3) var(--space-4);
+}
+
+.dst-empty {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.dst-note {
+  font-size: var(--fs-caption);
+}
