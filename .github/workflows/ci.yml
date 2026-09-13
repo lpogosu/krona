@@ -1,0 +1,68 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      - name: ESLint
+        run: npm run lint
+
+      - name: TypeScript
+        run: npm run typecheck
+
+      # Тесты задают пояса явно, поэтому второй прогон в другом TZ ловит случайную
+      # зависимость от локального времени раннера.
+      - name: Тесты
+        run: npm test
+
+      - name: Тесты в поясе с переводом часов
+        run: npm test
+        env:
+          TZ: America/New_York
+
+      - name: Сборка
+        run: npm run build
+
+      # CLI проверяется так же, как его будут звать в чужом CI: по кодам выхода.
+      - name: CLI на примерах
+        run: |
+          node apps/cli/dist/main.js check examples/multi-region.yaml --threshold 2
+          set +e
+          node apps/cli/dist/main.js check examples/prod-db-01.crontab
+          code=$?
+          set -e
+          test "$code" -eq 1
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Образ интерфейса
+        run: docker build --target web -t krona-web:ci .
+      - name: Смоук интерфейса
+        run: |
+          docker run -d --name krona -p 8080:8080 krona-web:ci
+          for i in $(seq 1 20); do curl -fsS http://localhost:8080/ >/dev/null && break; sleep 1; done
+          curl -fsS http://localhost:8080/ | grep -q 'КРОНА'
+          curl -fsSI http://localhost:8080/art/tree.webp | grep -q '200'
+      - name: Образ CLI
+        run: |
+          docker build --target cli -t krona-cli:ci .
+          docker run --rm -v "$PWD/examples:/work:ro" krona-cli:ci check /work/multi-region.yaml --threshold 2
