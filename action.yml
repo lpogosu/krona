@@ -1,0 +1,35 @@
+name: КРОНА — проверка расписаний cron
+description: Проверяет crontab и манифесты CronJob на перегрузки, пересечения и ловушки перевода часов.
+branding:
+  icon: clock
+  color: green
+
+inputs:
+  files:
+    description: Файлы через пробел — crontab или YAML с CronJob
+    required: true
+  timezone:
+    description: Пояс демона cron для строк без CRON_TZ
+    default: UTC
+  threshold:
+    description: Сколько задач может работать одновременно
+    default: '2'
+  days:
+    description: Длина окна анализа в сутках
+    default: '7'
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '22'
+    - name: Собрать CLI
+      shell: bash
+      working-directory: ${{ github.action_path }}
+      # Веб-интерфейс для проверки не нужен — ставятся только ядро, CLI и корневой TypeScript.
+      run: npm ci -w @krona/core -w @krona/cli --include-workspace-root && npm run build -w @krona/core && npm run build -w @krona/cli
+    # Аннотации ::warning / ::error CLI печатает сам, когда видит GITHUB_ACTIONS=true.
+    - name: Проверить расписания
+      shell: bash
+      run: node "${{ github.action_path }}/apps/cli/dist/main.js" check ${{ inputs.files }} --tz "${{ inputs.timezone }}" --threshold "${{ inputs.threshold }}" --days "${{ inputs.days }}"
